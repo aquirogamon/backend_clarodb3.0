@@ -127,6 +127,6 @@ REST_FRAMEWORK = {
 IMPORT_EXPORT_USE_TRANSACTIONS = False
 
 CRONJOBS = [
-    ('* */1 * * *', 'applications.requests.requests_ppm.dataInternetInterface'),
-    ('* */1 * * *', 'applications.requests.requests_ppm.dataCoreInterface')
+    ('* */1 * * *', 'applications.requests.requests_ppm.dataInternetInterface',
+     '>> /Volumes/Archivos/Documentos/Programacion/Desarrollos/clarodb_3.0/backend/log_crontab/file.log')
 ]
