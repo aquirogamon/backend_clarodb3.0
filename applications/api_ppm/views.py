@@ -10,16 +10,6 @@ from applications.api_ppm.models import coreInterface, internetInterface, PeerTy
 from applications.api_ppm.serializers import UserSerializer, GroupSerializer, internetInterfaceSerializer, coreInterfaceSerializer, PeerTypeSerializer, ServiceTypeSerializer, ServiceSerializer
 
 
-class UserView(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-
-
-class GroupView(viewsets.ModelViewSet):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-
-
 class PeerTypeView(viewsets.ModelViewSet):
     queryset = PeerType.objects.all()
     serializer_class = PeerTypeSerializer

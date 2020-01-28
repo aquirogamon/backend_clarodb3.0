@@ -2,17 +2,21 @@ from applications.api_ppm.models import internetIP, internetInterface, PeerType,
 import django
 import os
 import time
+import datetime
 import requests
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.configuration.local")
 
 django.setup()
 
 
+from_zone = tz.tzutc()
+to_zone = tz.tzlocal()
+
 def dataInternetInterface():
+    inicio = datetime.datetime.utcnow().replace(tzinfo=from_zone).astimezone(to_zone)
+    print("Inicio: "+time.strftime("%c"))
     devices = internetIP.objects.all().values()
     peeres = PeerType.objects.all().values()
-    print(devices)
-    print(peeres)
     for device in devices:
         ip_address = device['ip']
         print(ip_address)
@@ -60,9 +64,15 @@ def dataInternetInterface():
                     utilizationtx=float(interface[5].replace(',', '')), capacityInterface=(float(interface[4].replace(',', '')))/1000000000,
                     bpsTime=interface[1], deviceIndex=deviceIndex, gbpsmax=gbpsmax, utilization=utilization, peerType=peerType, port=interf)[0]
                 data.save()
+    fin = datetime.datetime.utcnow().replace(tzinfo=from_zone).astimezone(to_zone)
+    transcurrido = fin - inicio
+    print("Tiempo transcurrido: "+str(transcurrido))
+    print("Reporte completo!!! :D")
 
 
 def dataCoreInterface():
+    inicio = datetime.datetime.utcnow().replace(tzinfo=from_zone).astimezone(to_zone)
+    print("Inicio: "+time.strftime("%c"))
     devices = coreIP.objects.all().values()
     services = ServiceType.objects.all().values()
     print(devices)
@@ -115,13 +125,9 @@ def dataCoreInterface():
                     utilizationtx=float(interface[5].replace(',', '')), capacityInterface=(float(interface[4].replace(',', '')))/1000000000,
                     bpsTime=interface[1], deviceIndex=deviceIndex, gbpsmax=gbpsmax, utilization=utilization, serviceType=serviceType, port=interf)[0]
                 data.save()
-
-
-if __name__ == "__main__":
-    print('Creando reporte ... Por favor esperar')
-    inicio = time.strftime("%c")
-    print("Fecha y hora de inicio: "+time.strftime("%c"))
-    dataInternetInterface()
-    fin = time.strftime("%c")
-    print("Inicio: "+str(inicio)+" - Fin: "+str(fin))
+    fin = datetime.datetime.utcnow().replace(tzinfo=from_zone).astimezone(to_zone)
+    print("Fin: "+time.strftime("%c"))
+    transcurrido = fin - inicio
+    print("Tiempo transcurrido: "+str(transcurrido))
     print("Reporte completo!!! :D")
+
