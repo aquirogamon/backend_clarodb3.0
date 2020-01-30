@@ -32,6 +32,7 @@ ALLOW_PARALLEL_RUNS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'import_export',
     'django_crontab',
     'django_extensions',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -120,8 +122,9 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
+    'PAGE_SIZE': 200
 }
 
 IMPORT_EXPORT_USE_TRANSACTIONS = False

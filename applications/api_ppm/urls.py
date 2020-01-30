@@ -1,17 +1,21 @@
-from django.urls import include, path
-from rest_framework import routers
 from django.conf.urls import url
+from django.urls import include, path
 from applications.api_ppm import views
+from rest_framework import routers
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Documentation API')
 
 router = routers.DefaultRouter()
-router.register('users', views.UserView)
-router.register('groups', views.GroupView)
-router.register('internetInterfaces', views.internetInterfaceView)
-router.register('coreInterfaces', views.coreInterfaceView)
-router.register('peerTypes', views.PeerTypeView)
-router.register('serviceTypes', views.ServiceTypeView)
-router.register('services', views.ServiceView)
+router.register('users', views.UserViewSet)
+router.register('groups', views.GroupViewSet)
+router.register('internetInterfaces', views.internetInterfaceViewSet)
+router.register('coreInterfaces', views.coreInterfaceViewSet)
+router.register('peerTypes', views.PeerTypeViewSet)
+router.register('serviceTypes', views.ServiceTypeViewSet)
+router.register('services', views.ServiceViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
+    path('api/docs/', schema_view),
 ]
