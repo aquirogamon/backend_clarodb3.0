@@ -132,7 +132,7 @@ IMPORT_EXPORT_USE_TRANSACTIONS = False
 
 CRONJOBS = [
     ('*/60 * * * *', 'applications.requests.requests_ppm.dataInternetInterface',
-     '>> /Volumes/Archivos/Documentos/Programacion/Desarrollos/clarodb_3.0/backend/log_crontab/file.log'),
+     '>> /Volumes/Archivos/Documentos/Programacion/Desarrollos/clarodb_3.0/backend/log_crontab/internet_interface.log'),
     ('*/60 * * * *', 'applications.requests.requests_ppm.dataCoreInterface',
-     '>> /Volumes/Archivos/Documentos/Programacion/Desarrollos/clarodb_3.0/backend/log_crontab/file.log')
+     '>> /Volumes/Archivos/Documentos/Programacion/Desarrollos/clarodb_3.0/backend/log_crontab/core_interface.log')
 ]
