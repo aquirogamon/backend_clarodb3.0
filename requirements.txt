@@ -34,7 +34,7 @@ httpie==1.0.3
 idna==2.8
 itypes==1.1.0
 jdcal==1.4.1
-Jinja2==2.11.0
+Jinja2==2.11.3
 kiwisolver==1.1.0
 kombu==4.6.7
 MarkupPy==1.14
