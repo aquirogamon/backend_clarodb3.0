@@ -13,7 +13,7 @@ cycler==0.10.0
 dataclasses==0.6
 defusedxml==0.6.0
 diff-match-patch==20181111
-Django==2.2.9
+Django==2.2.28
 django-clear-cache==0.3
 django-common-helpers==0.9.2
 django-cors-headers==3.2.1
